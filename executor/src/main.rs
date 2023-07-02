@@ -4,18 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+//! Executor with your game connected to it as a plugin.
+use fyrox::engine::executor::Executor;
+use baralestir::GameConstructor;
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+fn main() {
+    let mut executor = Executor::new();
+    executor.add_plugin_constructor(GameConstructor);
+    executor.run()
 }
